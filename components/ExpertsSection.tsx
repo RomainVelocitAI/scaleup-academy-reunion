@@ -94,7 +94,8 @@ export default function ExpertsSection() {
     >
       {/* Title Section */}
       <motion.div 
-        className="text-center pt-24 pb-16 px-4 relative z-20"
+        className="text-center pb-16 px-4 relative z-20"
+        style={{ paddingTop: '150px' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
