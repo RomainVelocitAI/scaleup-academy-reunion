@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 export default function ExpertsSection() {
-  const [scrollY] = useState(0)
   const [sectionScrollProgress, setSectionScrollProgress] = useState(0)
   const [flippedCards, setFlippedCards] = useState<number[]>([])
 
@@ -22,7 +21,6 @@ export default function ExpertsSection() {
         const progress = Math.max(0, Math.min(1, scrollInSection / (sectionHeight + viewportHeight)))
         
         setSectionScrollProgress(progress)
-        setScrollY(window.scrollY)
       }
     }
     
