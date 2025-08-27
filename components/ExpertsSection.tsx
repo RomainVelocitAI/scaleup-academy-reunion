@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { useIsMobile } from "@/hooks/useMediaQuery"
 
 export default function ExpertsSection() {
+  const isMobile = useIsMobile()
   const [sectionScrollProgress, setSectionScrollProgress] = useState(0)
   const [flippedCards, setFlippedCards] = useState<number[]>([])
 
@@ -130,7 +132,134 @@ export default function ExpertsSection() {
         </p>
       </motion.div>
 
-      {/* Animated Circle Section */}
+      {/* Mobile Layout - Vertical Cards */}
+      {isMobile ? (
+        <div style={{ padding: '20px', maxWidth: '100%' }}>
+          <div style={{ 
+            display: 'grid', 
+            gap: '20px',
+            gridTemplateColumns: '1fr'
+          }}>
+            {experts.map((expert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onClick={() => handleCardClick(index)}
+                style={{
+                  background: 'white',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                  cursor: 'pointer',
+                  transform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s',
+                  minHeight: '400px',
+                  position: 'relative'
+                }}
+              >
+                {/* Front */}
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  backfaceVisibility: 'hidden',
+                  display: flippedCards.includes(index) ? 'none' : 'block'
+                }}>
+                  <img
+                    src={expert.image}
+                    alt={expert.name}
+                    style={{
+                      width: '100%',
+                      height: '250px',
+                      objectFit: 'cover',
+                      objectPosition: 'center top'
+                    }}
+                  />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ 
+                      fontSize: '1.5rem', 
+                      fontWeight: 'bold', 
+                      marginBottom: '8px',
+                      color: '#0A0A0A'
+                    }}>
+                      {expert.name}
+                    </h3>
+                    <p style={{ 
+                      color: '#D97706', 
+                      fontWeight: '600',
+                      marginBottom: '12px'
+                    }}>
+                      {expert.business}
+                    </p>
+                    <p style={{ 
+                      color: '#6B7280',
+                      fontSize: '0.875rem'
+                    }}>
+                      {expert.role}
+                    </p>
+                    <p style={{
+                      marginTop: '12px',
+                      color: '#D97706',
+                      fontSize: '0.875rem',
+                      fontWeight: '600'
+                    }}>
+                      Touchez pour plus d'infos →
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Back */}
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  backfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
+                  padding: '30px',
+                  display: flippedCards.includes(index) ? 'flex' : 'none',
+                  flexDirection: 'column',
+                  justifyContent: 'center'
+                }}>
+                  <h3 style={{ 
+                    fontSize: '1.5rem', 
+                    fontWeight: 'bold',
+                    marginBottom: '20px',
+                    color: '#0A0A0A'
+                  }}>
+                    {expert.name}
+                  </h3>
+                  <p style={{ 
+                    color: '#6B7280',
+                    marginBottom: '20px',
+                    lineHeight: '1.6'
+                  }}>
+                    {expert.description}
+                  </p>
+                  <div>
+                    {expert.achievements.map((achievement, i) => (
+                      <p key={i} style={{ 
+                        color: '#D97706',
+                        fontWeight: '600',
+                        marginBottom: '8px',
+                        fontSize: '0.875rem'
+                      }}>
+                        ✓ {achievement}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <>
+      {/* Animated Circle Section - Desktop Only */}
       <div className="h-screen flex items-center justify-center p-8 sticky top-0" style={{ marginTop: '200px' }}>
         <div className="relative">
           <div className="w-[1200px] h-[1200px] rounded-full flex items-center justify-center">
@@ -261,6 +390,8 @@ export default function ExpertsSection() {
           </div>
         </div>
       </div>
+      </>
+      )}
     </section>
   )
 }

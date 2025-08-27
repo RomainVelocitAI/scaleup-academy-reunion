@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 const ProgramSection = () => {
+  const isMobile = useIsMobile();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animatedOptions, setAnimatedOptions] = useState<number[]>([]);
   
@@ -119,7 +121,74 @@ const ProgramSection = () => {
         </p>
       </motion.div>
 
-      {/* Interactive Programme Cards */}
+      {/* Interactive Programme Cards - Different layout for mobile */}
+      {isMobile ? (
+        <div style={{ padding: '20px' }}>
+          <div style={{ 
+            display: 'grid',
+            gap: '20px',
+            gridTemplateColumns: '1fr'
+          }}>
+            {programme.map((session, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                style={{
+                  background: `linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), url('${session.image}')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  borderRadius: '12px',
+                  padding: '20px',
+                  minHeight: '180px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+                }}
+              >
+                <div style={{
+                  background: session.couleur,
+                  display: 'inline-block',
+                  padding: '4px 12px',
+                  borderRadius: '6px',
+                  fontWeight: 700,
+                  fontSize: '12px',
+                  color: '#0A0A0A',
+                  marginBottom: '12px',
+                  width: 'fit-content'
+                }}>
+                  {session.horaire}
+                </div>
+                <h3 style={{
+                  color: 'white',
+                  fontSize: '1.25rem',
+                  fontWeight: 'bold',
+                  marginBottom: '8px'
+                }}>
+                  {session.titre}
+                </h3>
+                <p style={{
+                  color: session.couleur,
+                  fontWeight: '600',
+                  fontSize: '1rem',
+                  marginBottom: '4px'
+                }}>
+                  {session.intervenant}
+                </p>
+                <p style={{
+                  color: 'rgba(255,255,255,0.8)',
+                  fontSize: '0.875rem'
+                }}>
+                  {session.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      ) : (
       <div className="flex justify-center items-center px-8">
         <div className="flex w-full max-w-[1200px] h-[400px] items-stretch overflow-hidden rounded-xl">
           {programme.map((session, index) => (
@@ -204,6 +273,7 @@ const ProgramSection = () => {
           ))}
         </div>
       </div>
+      )}
 
       {/* Bottom info */}
       <motion.div 

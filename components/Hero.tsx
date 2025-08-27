@@ -1,8 +1,11 @@
 'use client';
 
 import { FullScreenScrollFX } from '@/components/full-screen-scroll-fx';
+import { useIsMobile } from '@/hooks/useMediaQuery';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   const sections = [
     {
       id: "intro",
@@ -33,6 +36,66 @@ export default function Hero() {
       rightLabel: "INSCRIVEZ-VOUS",
     },
   ];
+
+  // Mobile version - simpler layout without complex animations
+  if (isMobile) {
+    return (
+      <div style={{ 
+        minHeight: '100vh',
+        background: 'linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%)',
+        fontFamily: '"Montserrat", system-ui, -apple-system, sans-serif',
+        color: '#D4AF37'
+      }}>
+        {sections.map((section, index) => (
+          <motion.section
+            key={section.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            style={{
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '20px',
+              position: 'relative',
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${section.background})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div style={{ textAlign: 'center', maxWidth: '90%' }}>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                marginBottom: '1rem',
+                opacity: 0.9,
+                letterSpacing: '0.1em'
+              }}>
+                {section.leftLabel}
+              </p>
+              <h2 style={{
+                fontSize: 'clamp(1.5rem, 8vw, 2.5rem)',
+                fontWeight: 800,
+                marginBottom: '1rem',
+                lineHeight: 1.2,
+                textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+              }}>
+                {section.title}
+              </h2>
+              <p style={{ 
+                fontSize: '0.875rem',
+                opacity: 0.9,
+                letterSpacing: '0.1em'
+              }}>
+                {section.rightLabel}
+              </p>
+            </div>
+          </motion.section>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <FullScreenScrollFX

@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { ZoomParallax } from './zoom-parallax'
+import { useIsMobile } from '@/hooks/useMediaQuery'
 
 export default function VenueSection() {
+  const isMobile = useIsMobile()
   // Images du Luxe Resort
   const luxeImages = [
     { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&auto=format&fit=crop', alt: 'Le Luxe Resort Lobby' },
@@ -73,8 +75,44 @@ export default function VenueSection() {
         </motion.div>
       </div>
 
-      {/* Zoom Parallax Gallery */}
-      <ZoomParallax images={luxeImages} />
+      {/* Zoom Parallax Gallery - Desktop only, simple grid on mobile */}
+      {isMobile ? (
+        <div style={{ 
+          padding: '20px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '20px',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          {luxeImages.slice(0, 4).map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+              }}
+            >
+              <img 
+                src={image.src} 
+                alt={image.alt}
+                style={{ 
+                  width: '100%', 
+                  height: '200px', 
+                  objectFit: 'cover' 
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+      ) : (
+        <ZoomParallax images={luxeImages} />
+      )}
 
       {/* Bottom Info Section */}
       <motion.div 

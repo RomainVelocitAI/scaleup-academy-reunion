@@ -107,7 +107,7 @@ export default function TruthSection() {
         width: '100%',
         backgroundColor: '#FAFAFA',
         color: '#0A0A0A',
-        padding: '100px 20px',
+        padding: 'clamp(50px, 10vw, 100px) 20px',
         position: 'relative',
         zIndex: 10,
         marginTop: '-5vh',
@@ -141,7 +141,7 @@ export default function TruthSection() {
         <motion.h2 
           variants={titleVariants}
           style={{
-            fontSize: 'clamp(2.5rem, 5vw, 5rem)',
+            fontSize: 'clamp(2rem, 5vw, 5rem)',
             fontWeight: 800,
             textAlign: 'center',
             marginBottom: '20px',
@@ -208,8 +208,8 @@ export default function TruthSection() {
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '20px'
           }}>
             {problemCards.map((card, index) => (
               <motion.div 
@@ -322,8 +322,8 @@ export default function TruthSection() {
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '20px'
           }}>
             {solutionCards.map((card, index) => (
               <motion.div 
@@ -414,7 +414,7 @@ export default function TruthSection() {
           />
           
           <h3 style={{
-            fontSize: 'clamp(3rem, 4vw, 4.5rem)',
+            fontSize: 'clamp(2rem, 4vw, 4.5rem)',
             fontWeight: 800,
             marginBottom: '40px',
             color: '#0A0A0A',

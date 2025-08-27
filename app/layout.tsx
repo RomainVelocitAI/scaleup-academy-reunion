@@ -21,6 +21,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Scaleup Academy - Événement exclusif pour entrepreneurs ambitieux",
   description: "Rejoignez l'événement Scaleup Academy et transformez votre entreprise avec les stratégies des leaders de demain. 15-16 Mars 2025 à Paris.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
 export default function RootLayout({
