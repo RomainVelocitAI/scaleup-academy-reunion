@@ -67,7 +67,7 @@ export default function VenueSection() {
             margin: '0 auto',
             lineHeight: '1.75'
           }}>
-            Un lieu d'exception pour un événement d'exception. Entre océan et montagne, 
+            Un lieu d&apos;exception pour un événement d&apos;exception. Entre océan et montagne, 
             le cadre parfait pour transformer votre vision business.
           </p>
         </motion.div>
@@ -101,7 +101,7 @@ export default function VenueSection() {
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#D97706', marginBottom: '8px' }}>5★</div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>Hôtel Premium</h3>
-              <p style={{ color: '#6B7280' }}>Un des plus prestigieux établissements de l'île</p>
+              <p style={{ color: '#6B7280' }}>Un des plus prestigieux établissements de l&apos;île</p>
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#D97706', marginBottom: '8px' }}>150</div>

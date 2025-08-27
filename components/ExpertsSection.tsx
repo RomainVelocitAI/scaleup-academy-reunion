@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 export default function ExpertsSection() {
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollY] = useState(0)
   const [sectionScrollProgress, setSectionScrollProgress] = useState(0)
   const [flippedCards, setFlippedCards] = useState<number[]>([])
 
@@ -249,11 +249,11 @@ export default function ExpertsSection() {
                         lineHeight: '1.1'
                       }}
                     >
-                      L'ÉCOSYSTÈME<br />COMPLET
+                      L&apos;ÉCOSYSTÈME<br />COMPLET
                     </h3>
                     <p className="text-gray-800 text-xl font-bold mb-2 text-center">pour scaler ton business</p>
                     <p className="text-gray-600 text-center max-w-sm">
-                      De l'acquisition à la rétention, de la finance à l'automatisation
+                      De l&apos;acquisition à la rétention, de la finance à l&apos;automatisation
                     </p>
                   </div>
                 </div>

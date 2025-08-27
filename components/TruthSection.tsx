@@ -12,7 +12,6 @@ export default function TruthSection() {
   });
 
   const lineWidth = useTransform(scrollYProgress, [0.3, 0.6], ["0%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -149,7 +148,6 @@ export default function TruthSection() {
             letterSpacing: '-0.02em',
             lineHeight: 1,
             textTransform: 'uppercase',
-            fontFamily: '"Montserrat", system-ui, -apple-system, sans-serif',
             fontFamily: '"Montserrat", system-ui, -apple-system, sans-serif'
           }}
         >
@@ -179,8 +177,8 @@ export default function TruthSection() {
           }}
         >
           Un événement business qui promet monts et merveilles. 
-          Du boost motivationnel à gogo. Des formateurs qui n'ont rien vendu d'autres que des formations depuis 5 ans.
-          Et la semaine d'après ? <strong style={{ color: '#DC2626', fontWeight: 500 }}>Retour à la case départ.</strong>
+          Du boost motivationnel à gogo. Des formateurs qui n&apos;ont rien vendu d&apos;autres que des formations depuis 5 ans.
+          Et la semaine d&apos;après ? <strong style={{ color: '#DC2626', fontWeight: 500 }}>Retour à la case départ.</strong>
         </motion.p>
 
         {/* Problem Section */}
@@ -205,7 +203,7 @@ export default function TruthSection() {
             textTransform: 'uppercase',
             fontFamily: '"Montserrat", system-ui, -apple-system, sans-serif'
           }}>
-            Ce qu'on te vend habituellement
+            Ce qu&apos;on te vend habituellement
           </h3>
           
           <div style={{
@@ -319,7 +317,7 @@ export default function TruthSection() {
             textTransform: 'uppercase',
             fontFamily: '"Montserrat", system-ui, -apple-system, sans-serif'
           }}>
-            Ce qu'on fait vraiment différemment
+            Ce qu&apos;on fait vraiment différemment
           </h3>
           
           <div style={{
@@ -450,7 +448,7 @@ export default function TruthSection() {
             position: 'relative',
             zIndex: 1
           }}>
-            Tu repars avec des stratégies qu'on applique{' '}
+            Tu repars avec des stratégies qu&apos;on applique{' '}
             <strong style={{ color: '#0A0A0A', fontWeight: 500 }}>nous-mêmes au quotidien</strong>.
           </p>
           <p style={{

@@ -69,7 +69,7 @@ const ProgramSection = () => {
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
-  }, []);
+  }, [programme]);
 
   return (
     <section 
@@ -215,7 +215,7 @@ const ProgramSection = () => {
         viewport={{ once: true }}
       >
         <p className="text-lg text-gray-600 mb-8">
-          + Petit-déjeuner d'accueil, pauses café et déjeuner networking inclus
+          + Petit-déjeuner d&apos;accueil, pauses café et déjeuner networking inclus
         </p>
         <div className="inline-flex items-center gap-8" style={{ paddingTop: '30px' }}>
           <div className="text-center">
