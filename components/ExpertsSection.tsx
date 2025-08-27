@@ -147,20 +147,30 @@ export default function ExpertsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                onClick={() => handleCardClick(index)}
                 style={{
-                  background: 'white',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                  cursor: 'pointer',
-                  transform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s',
-                  minHeight: '480px',
-                  height: '480px',
-                  position: 'relative'
+                  perspective: '1000px',
+                  WebkitPerspective: '1000px'
                 }}
+              >
+                <div
+                  onClick={() => handleCardClick(index)}
+                  style={{
+                    background: 'white',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    cursor: 'pointer',
+                    transform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
+                    WebkitTransform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
+                    transformStyle: 'preserve-3d',
+                    WebkitTransformStyle: 'preserve-3d',
+                    transition: 'transform 0.6s',
+                    WebkitTransition: '-webkit-transform 0.6s',
+                    minHeight: '480px',
+                    height: '480px',
+                    position: 'relative',
+                    width: '100%'
+                  }}
               >
                 {/* Front */}
                 <div style={{
@@ -256,6 +266,7 @@ export default function ExpertsSection() {
                       </p>
                     ))}
                   </div>
+                </div>
                 </div>
               </motion.div>
             ))}
