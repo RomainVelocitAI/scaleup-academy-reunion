@@ -157,7 +157,8 @@ export default function ExpertsSection() {
                   transform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
                   transformStyle: 'preserve-3d',
                   transition: 'transform 0.6s',
-                  minHeight: '400px',
+                  minHeight: '480px',
+                  height: '480px',
                   position: 'relative'
                 }}
               >
@@ -167,14 +168,15 @@ export default function ExpertsSection() {
                   width: '100%',
                   height: '100%',
                   backfaceVisibility: 'hidden',
-                  display: flippedCards.includes(index) ? 'none' : 'block'
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(0deg)'
                 }}>
                   <img
                     src={expert.image}
                     alt={expert.name}
                     style={{
                       width: '100%',
-                      height: '250px',
+                      height: '280px',
                       objectFit: 'cover',
                       objectPosition: 'center top'
                     }}
@@ -218,10 +220,12 @@ export default function ExpertsSection() {
                   width: '100%',
                   height: '100%',
                   backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
                   background: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
                   padding: '30px',
-                  display: flippedCards.includes(index) ? 'flex' : 'none',
+                  paddingBottom: '40px',
+                  display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center'
                 }}>
