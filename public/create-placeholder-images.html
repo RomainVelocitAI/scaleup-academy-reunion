@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer Images Placeholder</title>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; }
+        canvas { border: 1px solid #ccc; display: block; margin: 20px 0; }
+        button { padding: 10px 20px; margin: 5px; background: #D4AF37; border: none; color: black; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Générateur d'Images Placeholder pour Scaleup Academy</h1>
+    <p>Cliquez sur les boutons pour télécharger les images</p>
+    
+    <canvas id="canvas" width="1920" height="1080"></canvas>
+    
+    <button onclick="createImage(0)">Télécharger Image 1 - Intro</button>
+    <button onclick="createImage(1)">Télécharger Image 2 - Vision</button>
+    <button onclick="createImage(2)">Télécharger Image 3 - Programme</button>
+    <button onclick="createImage(3)">Télécharger Image 4 - Action</button>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const configs = [
+            { // Image 1 - Intro
+                gradient: ['#000000', '#1A1A1A', '#D4AF37'],
+                text: 'SCALEUP ACADEMY',
+                subtitle: 'DÉCEMBRE 2025 - LA RÉUNION'
+            },
+            { // Image 2 - Vision
+                gradient: ['#0A0A0A', '#D4AF37', '#0A0A0A'],
+                text: 'TRANSFORMER',
+                subtitle: 'VOTRE VISION'
+            },
+            { // Image 3 - Programme
+                gradient: ['#1A1A1A', '#B8941F', '#000000'],
+                text: '48H',
+                subtitle: "D'EXCELLENCE"
+            },
+            { // Image 4 - Action
+                gradient: ['#D4AF37', '#1A1A1A', '#000000'],
+                text: 'REJOIGNEZ',
+                subtitle: "L'ÉLITE"
+            }
+        ];
+        
+        function createImage(index) {
+            const config = configs[index];
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, 1920, 1080);
+            gradient.addColorStop(0, config.gradient[0]);
+            gradient.addColorStop(0.5, config.gradient[1]);
+            gradient.addColorStop(1, config.gradient[2]);
+            
+            // Fill background
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1920, 1080);
+            
+            // Add some texture with circles
+            for(let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(
+                    Math.random() * 1920, 
+                    Math.random() * 1080, 
+                    Math.random() * 300 + 100, 
+                    0, 
+                    Math.PI * 2
+                );
+                ctx.fillStyle = `rgba(212, 175, 55, ${Math.random() * 0.1})`;
+                ctx.fill();
+            }
+            
+            // Add text
+            ctx.fillStyle = '#D4AF37';
+            ctx.font = 'bold 120px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(config.text, 960, 500);
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.font = '60px Arial';
+            ctx.fillText(config.subtitle, 960, 620);
+            
+            // Download
+            canvas.toBlob(function(blob) {
+                const link = document.createElement('a');
+                link.download = `hero-bg-${index + 1}.jpg`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            }, 'image/jpeg', 0.95);
+        }
+        
+        // Show first image by default
+        createImage(0);
+    </script>
+</body>
+</html>
