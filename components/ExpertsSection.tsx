@@ -141,45 +141,34 @@ export default function ExpertsSection() {
             gridTemplateColumns: '1fr'
           }}>
             {experts.map((expert, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onClick={() => handleCardClick(index)}
                 style={{
-                  perspective: '1000px',
-                  WebkitPerspective: '1000px'
+                  background: 'white',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                  cursor: 'pointer',
+                  minHeight: '480px',
+                  height: '480px',
+                  position: 'relative',
+                  width: '100%'
                 }}
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  onClick={() => handleCardClick(index)}
-                  style={{
-                    background: 'white',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                    cursor: 'pointer',
-                    transform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
-                    WebkitTransform: flippedCards.includes(index) ? 'rotateY(180deg)' : 'rotateY(0)',
-                    transformStyle: 'preserve-3d',
-                    WebkitTransformStyle: 'preserve-3d',
-                    transition: 'transform 0.6s',
-                    minHeight: '480px',
-                    height: '480px',
-                    position: 'relative',
-                    width: '100%'
-                  }}
-                >
                   {/* Front */}
                   <div style={{
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    transform: 'rotateY(0deg)',
-                    WebkitTransform: 'rotateY(0deg)'
+                    visibility: flippedCards.includes(index) ? 'hidden' : 'visible',
+                    opacity: flippedCards.includes(index) ? 0 : 1,
+                    transition: 'opacity 0.3s, visibility 0s',
+                    zIndex: flippedCards.includes(index) ? 0 : 1
                   }}>
                     <img
                       src={expert.image}
@@ -229,16 +218,16 @@ export default function ExpertsSection() {
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
-                    WebkitTransform: 'rotateY(180deg)',
                     background: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
                     padding: '30px',
                     paddingBottom: '40px',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    visibility: flippedCards.includes(index) ? 'visible' : 'hidden',
+                    opacity: flippedCards.includes(index) ? 1 : 0,
+                    transition: 'opacity 0.3s, visibility 0s',
+                    zIndex: flippedCards.includes(index) ? 1 : 0
                   }}>
                     <h3 style={{ 
                       fontSize: '1.5rem', 
@@ -268,8 +257,7 @@ export default function ExpertsSection() {
                       ))}
                     </div>
                   </div>
-                </motion.div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
