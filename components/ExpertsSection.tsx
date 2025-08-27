@@ -141,18 +141,18 @@ export default function ExpertsSection() {
             gridTemplateColumns: '1fr'
           }}>
             {experts.map((expert, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
                 style={{
                   perspective: '1000px',
                   WebkitPerspective: '1000px'
                 }}
               >
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
                   onClick={() => handleCardClick(index)}
                   style={{
                     background: 'white',
@@ -165,110 +165,111 @@ export default function ExpertsSection() {
                     transformStyle: 'preserve-3d',
                     WebkitTransformStyle: 'preserve-3d',
                     transition: 'transform 0.6s',
-                    WebkitTransition: '-webkit-transform 0.6s',
                     minHeight: '480px',
                     height: '480px',
                     position: 'relative',
                     width: '100%'
                   }}
-              >
-                {/* Front */}
-                <div style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'rotateY(0deg)'
-                }}>
-                  <img
-                    src={expert.image}
-                    alt={expert.name}
-                    style={{
-                      width: '100%',
-                      height: '280px',
-                      objectFit: 'cover',
-                      objectPosition: 'center top'
-                    }}
-                  />
-                  <div style={{ padding: '20px' }}>
+                >
+                  {/* Front */}
+                  <div style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(0deg)',
+                    WebkitTransform: 'rotateY(0deg)'
+                  }}>
+                    <img
+                      src={expert.image}
+                      alt={expert.name}
+                      style={{
+                        width: '100%',
+                        height: '280px',
+                        objectFit: 'cover',
+                        objectPosition: 'center top'
+                      }}
+                    />
+                    <div style={{ padding: '20px' }}>
+                      <h3 style={{ 
+                        fontSize: '1.5rem', 
+                        fontWeight: 'bold', 
+                        marginBottom: '8px',
+                        color: '#0A0A0A'
+                      }}>
+                        {expert.name}
+                      </h3>
+                      <p style={{ 
+                        color: '#D97706', 
+                        fontWeight: '600',
+                        marginBottom: '12px'
+                      }}>
+                        {expert.business}
+                      </p>
+                      <p style={{ 
+                        color: '#6B7280',
+                        fontSize: '0.875rem'
+                      }}>
+                        {expert.role}
+                      </p>
+                      <p style={{
+                        marginTop: '12px',
+                        color: '#D97706',
+                        fontSize: '0.875rem',
+                        fontWeight: '600'
+                      }}>
+                        Touchez pour plus d&apos;infos →
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Back */}
+                  <div style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    WebkitTransform: 'rotateY(180deg)',
+                    background: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
+                    padding: '30px',
+                    paddingBottom: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                  }}>
                     <h3 style={{ 
                       fontSize: '1.5rem', 
-                      fontWeight: 'bold', 
-                      marginBottom: '8px',
+                      fontWeight: 'bold',
+                      marginBottom: '20px',
                       color: '#0A0A0A'
                     }}>
                       {expert.name}
                     </h3>
                     <p style={{ 
-                      color: '#D97706', 
-                      fontWeight: '600',
-                      marginBottom: '12px'
-                    }}>
-                      {expert.business}
-                    </p>
-                    <p style={{ 
                       color: '#6B7280',
-                      fontSize: '0.875rem'
+                      marginBottom: '20px',
+                      lineHeight: '1.6'
                     }}>
-                      {expert.role}
+                      {expert.description}
                     </p>
-                    <p style={{
-                      marginTop: '12px',
-                      color: '#D97706',
-                      fontSize: '0.875rem',
-                      fontWeight: '600'
-                    }}>
-                      Touchez pour plus d&apos;infos →
-                    </p>
+                    <div>
+                      {expert.achievements.map((achievement, i) => (
+                        <p key={i} style={{ 
+                          color: '#D97706',
+                          fontWeight: '600',
+                          marginBottom: '8px',
+                          fontSize: '0.875rem'
+                        }}>
+                          ✓ {achievement}
+                        </p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                
-                {/* Back */}
-                <div style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
-                  padding: '30px',
-                  paddingBottom: '40px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center'
-                }}>
-                  <h3 style={{ 
-                    fontSize: '1.5rem', 
-                    fontWeight: 'bold',
-                    marginBottom: '20px',
-                    color: '#0A0A0A'
-                  }}>
-                    {expert.name}
-                  </h3>
-                  <p style={{ 
-                    color: '#6B7280',
-                    marginBottom: '20px',
-                    lineHeight: '1.6'
-                  }}>
-                    {expert.description}
-                  </p>
-                  <div>
-                    {expert.achievements.map((achievement, i) => (
-                      <p key={i} style={{ 
-                        color: '#D97706',
-                        fontWeight: '600',
-                        marginBottom: '8px',
-                        fontSize: '0.875rem'
-                      }}>
-                        ✓ {achievement}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>
