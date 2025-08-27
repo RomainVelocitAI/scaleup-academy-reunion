@@ -207,7 +207,7 @@ export default function ExpertsSection() {
                       fontSize: '0.875rem',
                       fontWeight: '600'
                     }}>
-                      Touchez pour plus d'infos →
+                      Touchez pour plus d&apos;infos →
                     </p>
                   </div>
                 </div>
